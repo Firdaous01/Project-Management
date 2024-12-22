@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <title>Register</title>
+    <style>
+        /* General Body */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f9fc;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            width: 100%;
+            padding: 2rem;
+        }
+
+        /* Register Container */
+        .box-area {
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        /* Right Box */
+        .right-box {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-text h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .header-text p {
+            color: #777;
+            font-size: 1rem;
+        }
+
+        /* Form */
+        .form-control {
+            border-radius: 25px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            background-color: #fafafa;
+        }
+
+        .form-control:focus {
+            border-color: #6c5ce7;
+            box-shadow: 0 0 0 0.2rem rgba(108, 92, 231, 0.25);
+        }
+
+        /* Submit Button */
+        .btn-primary {
+            background-color: #6c5ce7;
+            border: none;
+            border-radius: 25px;
+            padding: 12px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #5e48c5;
+        }
+
+        /* Error Message */
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* Footer Text */
+        small {
+            font-size: 0.9rem;
+        }
+
+        /* Adjustments for Mobile */
+        @media (max-width: 767px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .box-area {
+                padding: 1.5rem;
+            }
+
+            .header-text h2 {
+                font-size: 1.5rem;
+            }
+
+            .form-control {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Main Container -->
+<div class="container">
+
+    <!-- Register Container -->
+    <div class="row border rounded-5 p-3 bg-white shadow box-area">
+
+        <!-- Right Box -->
+        <div class="col-12 right-box">
+            <div class="header-text mb-4 text-center">
+                <h2>Register</h2>
+                <p>Fill in the form below to create your account.</p>
+            </div>
+
+            <!-- Register Form -->
+            <form th:action="@{/register}" method="post" th:object="${user}">
+                <div class="input-group mb-3">
+                    <input type="text" name="nom" class="form-control form-control-lg" placeholder="Name" required th:field="*{nom}">
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" name="login" class="form-control form-control-lg" placeholder="Login" required th:field="*{login}">
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" name="motDePasse" class="form-control form-control-lg" placeholder="Password" required th:field="*{motDePasse}">
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" name="confirmePassword" class="form-control form-control-lg" placeholder="Confirm Password" required th:field="*{confirmePassword}">
+                </div>
+                <div class="input-group mb-3">
+                    <select name="role" class="form-select form-control-lg" required th:field="*{role}">
+                        <option value="dev">Dev</option>
+                        <option value="chef">Chef</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="competence" class="form-label">Competence</label>
+                    <input type="text" id="competence" name="competence" class="form-control" th:field="*{competence}" placeholder="Enter your skills" required>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="number" name="experience" class="form-control form-control-lg" placeholder="Experience (years)" required th:field="*{experience}">
+                </div>
+                <div class="input-group mb-3">
+                    <button type="submit" class="btn btn-lg btn-primary w-100">Register</button>
+                </div>
+            </form>
+
+            <!-- Error Handling -->
+            <div th:if="${error2}" class="alert alert-danger">
+                <p th:text="${error2}"></p>
+            </div>
+
+            <!-- Sign In Link -->
+            <div class="row text-center">
+                <small>Already have an account? <a th:href="@{/login}">Login</a></small>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
+

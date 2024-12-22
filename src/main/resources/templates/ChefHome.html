@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Developer Dashboard</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7fc;
+            display: flex;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: #6c5ce7;
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            color: white;
+        }
+
+        .navbar-nav .nav-link {
+            color: white;
+        }
+
+        .navbar-nav .nav-link.active {
+            background-color: #5e48c5;
+        }
+
+        header {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        header h1 {
+            font-weight: 600;
+            font-size: 3rem;
+        }
+
+        header p {
+            font-size: 1.25rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100%;
+            background-color: #2d3436;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+            padding-left: 20px;
+            bottom: 0;  /* Ensure it stays full-height */
+        }
+
+        .sidebar h3 {
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .sidebar .nav-link {
+            color: white;
+            font-weight: 500;
+            padding: 12px 0;
+            border-bottom: 1px solid #444;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: #5e48c5;
+            border-radius: 5px;
+        }
+
+        .sidebar .nav-link i {
+            margin-right: 10px; /* Space between the emoji and text */
+        }
+
+        /* Main Content Area */
+        .main-content {
+            margin-left: 250px;
+            width: calc(100% - 250px); /* Ensures content fills the remaining space */
+            padding: 30px;
+            padding-bottom: 80px; /* Adds space to prevent footer overlap */
+            overflow-y: auto; /* Adds scroll if content is too long */
+        }
+
+        /* Card styling */
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: #2d3436;
+        }
+
+        .card-text {
+            color: #636e72;
+        }
+
+        /* Button styling */
+        .btn-primary {
+            background-color: #6c5ce7;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+        }
+
+        .btn-primary:hover {
+            background-color: #5e48c5;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #2d3436;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            z-index: 1000; /* Ensures footer stays on top of other elements */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Top Navigation Bar -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Project Manager</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/developer/home}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/login}">Sign out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Sidebar Section -->
+<!-- Sidebar Section -->
+<div class="sidebar">
+    <h3>Chef Dashboard</h3>
+    <nav>
+        <a class="nav-link" th:href="@{/chef/updateAccount}">
+            <i>🔧</i> Account Management
+        </a>
+        <a class="nav-link" th:href="@{/chef/create}">
+            <i>📂</i> Project Management
+        </a>
+        <a class="nav-link" th:href="@{/chef/assignDeveloper}">
+            <i>➕</i> Assign Developer
+        </a>
+        <a class="nav-link" th:href="@{/chef/findDeveloper}">
+            <i>🔍</i> Find Developer
+        </a>
+        <a class="nav-link" th:href="@{/chef/evaluateDeveloper}">
+            <i>📊</i> Evaluate Developer
+        </a>
+        <!-- New List Project Button -->
+        <a class="nav-link" th:href="@{/chef/ListProject}">
+            <i>📋</i> List Projects
+        </a>
+    </nav>
+</div>
+
+<!-- Main Content Section -->
+<main class="main-content">
+    <header>
+        <h1>Welcome, Chef!</h1>
+        <p>Manage your account, consult assigned projects, and view evaluations with ease.</p>
+    </header>
+    <div class="container my-5">
+
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
